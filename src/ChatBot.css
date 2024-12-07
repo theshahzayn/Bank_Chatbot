@@ -1,0 +1,139 @@
+/* Full Wrapper */
+.chatbot-wrapper {
+  display: flex;
+  height: 100vh; /* Full viewport height */
+  background-color: #1e1e2f;
+  color: #fff;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Branding Section */
+.branding-section {
+  width: 300px;
+  background-color: #2b2b3b;
+  padding: 20px;
+  border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.animated-logo img {
+  max-width: 150px;
+  margin-bottom: 20px;
+  height: 100%;
+  width: 100%;
+}
+
+/* Chatbot Main Container */
+.chatbot-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: auto;
+  background-color: #2b2b3b;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  position: relative;
+  height: 90%;
+}
+
+/* Chat Display */
+.chat-display {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Chat Message Styles */
+.chat-message {
+  display: flex;
+}
+
+.chat-message.user {
+  justify-content: flex-end;
+}
+
+.chat-message.bot {
+  justify-content: flex-start;
+}
+
+.chat-bubble {
+  max-width: 70%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.chat-message.user .chat-bubble {
+  background-color: #0078ff;
+  color: white;
+  border-bottom-right-radius: 5px;
+}
+
+.chat-message.bot .chat-bubble {
+  background-color: #3a3a4f;
+  color: white;
+  border-bottom-left-radius: 5px;
+}
+
+/* Input Container */
+.input-container {
+  display: flex;
+  padding: 10px;
+  background-color: #1e1e2f;
+  border-top: 1px solid #333;
+  position: sticky; /* Sticky positioning */
+  bottom: 0; /* Always stick to the bottom of the parent container */
+  z-index: 10; /* Ensure it stays above the chat messages */
+}
+
+.input-container input {
+  flex: 1;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  outline: none;
+}
+
+.input-container input::placeholder {
+  color: #888;
+}
+
+.input-container button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 20px;
+  background-color: #0078ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.input-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0.7;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
