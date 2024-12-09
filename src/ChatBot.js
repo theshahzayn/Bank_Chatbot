@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios'; // Import Axios
 import './ChatBot.css';
 import logoGif from './Dolatbot.gif';
 
@@ -6,18 +7,30 @@ const ChatBot = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (message.trim()) {
+      // Add the user's message to the chat history
       setChatHistory([...chatHistory, { sender: 'user', text: message }]);
-      setMessage('');
+      setMessage(''); // Clear the input field
 
-      // Simulated bot response
-      setTimeout(() => {
+      try {
+        // Send the message to the Flask backend
+        const response = await axios.post('http://127.0.0.1:5000/predict', {
+          input_text: message,
+        });
+
+        // Add the bot's response to the chat history
         setChatHistory((prevChat) => [
           ...prevChat,
-          { sender: 'bot', text: 'Welcome to Bank Support! How can I assist you today?' },
+          { sender: 'bot', text: response.data.response },
         ]);
-      }, 1000);
+      } catch (error) {
+        console.error('Error connecting to the backend:', error);
+        setChatHistory((prevChat) => [
+          ...prevChat,
+          { sender: 'bot', text: 'Sorry, I am having trouble connecting to the server.' },
+        ]);
+      }
     }
   };
 
@@ -50,7 +63,7 @@ const ChatBot = () => {
             type="text"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            onKeyDown={handleKeyDown} // Add this for Enter key functionality
+            onKeyDown={handleKeyDown}
             placeholder="Type your message..."
           />
           <button onClick={handleSendMessage}>Send</button>
