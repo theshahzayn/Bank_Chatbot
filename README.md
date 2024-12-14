@@ -82,17 +82,13 @@ $ cd dolatbot
    ```
 
 ### Frontend Setup
-1. Navigate to the frontend directory:
-   ```bash
-   $ cd ../frontend
-   ```
 
-2. Install Node.js dependencies:
+1. Install Node.js dependencies:
    ```bash
    $ npm install
    ```
 
-3. Start the React development server:
+2. Start the React development server:
    ```bash
    $ npm start
    ```
