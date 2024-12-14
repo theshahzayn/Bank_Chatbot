@@ -142,15 +142,3 @@ To train the `google_flan_T5_small` model:
 - Integrate advanced LLMs such as GPT-4 for even better response quality.
 - Enhance the dataset for broader domain coverage.
 
----
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## Contributors
-- **[Shahzain Zaidi](https://www.linkedin.com/in/shahzain-zaidi/)**
-
-Feel free to contribute by submitting issues or pull requests!
-
