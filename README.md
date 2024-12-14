@@ -1,70 +1,156 @@
-# Getting Started with Create React App
+# Dolatbot: A Banking Chatbot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dolatbot is an intelligent banking chatbot designed to provide seamless customer support using advanced Natural Language Processing (NLP) techniques. Built with a React-based frontend and Flask backend, Dolatbot integrates machine learning and deep learning models to deliver a highly accurate and conversational experience.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Text-to-Text Response Generation**: Provides contextual and dynamic responses to user queries.
+- **Seamless Frontend-Backend Integration**: Built with React for a responsive user interface and Flask for scalable backend services.
+- **Fine-tuned AI Model**: Utilizes a fine-tuned `google_flan_T5_small` model for generating intelligent responses.
+- **Custom Training Pipeline**: Developed using custom datasets with intent-based classification and text generation.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Development Journey
 
-### `npm test`
+1. **Understanding NLP with Random Forest Classifier**:
+   - We started with a dataset that included an `intent` column to classify user queries.
+   - Used a `RandomForestClassifier` to understand basic NLP tasks and classify intents.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Exploring Transformers with GPT-2**:
+   - Attempted to train the powerful `GPT-2` transformer.
+   - Faced challenges related to weight and bias errors during the training process due to its complexity.
 
-### `npm run build`
+3. **Fine-Tuning BERT**:
+   - Trained the `bert-base-uncased` model on our dataset.
+   - Achieved excellent text classification results.
+   - However, BERT was primarily a classification model, and we needed a text-to-text generation model for our chatbot.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Adopting Google-T5**:
+   - Discovered the `google-T5` model on Hugging Face, specifically designed for text-to-text tasks.
+   - Fine-tuned the `google_flan_T5_small` model on our dataset.
+   - Successfully created a fine-tuned text-to-text generation model, which became the foundation of Dolatbot.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technical Stack
 
-### `npm run eject`
+### Frontend
+- **React**: For building a dynamic, user-friendly interface.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend
+- **Flask**: Lightweight backend framework for handling API requests and integrating the chatbot model.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Machine Learning
+- **Hugging Face Transformers**:
+  - `google_flan_T5_small`: Fine-tuned model for text-to-text response generation.
+  - `bert-base-uncased`: Used for initial text classification tasks.
+- **Scikit-learn**:
+  - `RandomForestClassifier`: Used for basic NLP and intent classification.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Installation
 
-## Learn More
+### Prerequisites
+- Python 3.8+
+- Node.js 16+
+- pip (Python package manager)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Clone the Repository
+```bash
+$ git clone https://github.com/your-repo/dolatbot.git
+$ cd dolatbot
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Backend Setup
+1. Navigate to the backend directory:
+   ```bash
+   $ cd backend
+   ```
 
-### Code Splitting
+2. Install Python dependencies:
+   ```bash
+   $ pip install -r requirements.txt
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. Run the Flask server:
+   ```bash
+   $ python app.py
+   ```
 
-### Analyzing the Bundle Size
+### Frontend Setup
+1. Navigate to the frontend directory:
+   ```bash
+   $ cd ../frontend
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Install Node.js dependencies:
+   ```bash
+   $ npm install
+   ```
 
-### Making a Progressive Web App
+3. Start the React development server:
+   ```bash
+   $ npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Usage
+1. Start both the backend (Flask) and frontend (React) servers.
+2. Open your browser and navigate to `http://localhost:3000`.
+3. Interact with Dolatbot by typing your queries in the chatbot interface.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Dataset
+We trained Dolatbot on a custom dataset containing user queries and their corresponding intents. The dataset was specifically tailored to banking-related queries to ensure domain-specific accuracy.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Model Training
+To train the `google_flan_T5_small` model:
+1. Prepare your dataset in the required format.
+2. Fine-tune the model using Hugging Face's Transformers library.
+3. Save the trained model:
+   ```python
+   from transformers import T5Tokenizer, T5ForConditionalGeneration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+   # Load and fine-tune the model
+   model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-small")
+   tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-small")
+
+   # Save the model
+   model.save_pretrained("./fine_tuned_T5_small")
+   tokenizer.save_pretrained("./fine_tuned_T5_small")
+   ```
+4. Use the saved model in the backend.
+
+---
+
+## Challenges
+- **Training GPT-2**: Encountered weight and bias errors due to resource constraints and complexity.
+- **Selecting the Right Model**: Transitioning from intent classification to text-to-text generation involved multiple iterations and model experiments.
+
+---
+
+## Future Work
+- Expand Dolatbot's capabilities to handle multi-turn conversations.
+- Integrate advanced LLMs such as GPT-4 for even better response quality.
+- Enhance the dataset for broader domain coverage.
+
+---
+
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Contributors
+- **[Shahzain Zaidi](https://www.linkedin.com/in/shahzain-zaidi/)**
+
+Feel free to contribute by submitting issues or pull requests!
+
